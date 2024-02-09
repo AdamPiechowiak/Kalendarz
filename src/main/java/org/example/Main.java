@@ -1,57 +1,78 @@
 package org.example;
 
+import main.java.org.example.Reminder;
+
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
+import java.util.ArrayList;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
-        //zapiszPlik("test.txt");
-        String odczytanyTekst = odczytajPlik("test.txt");
-        System.out.println("Odczytany tekst:\n" + odczytanyTekst);
-    }
 
-    public static void zapiszPlik(String nazwaPliku) {
 
-        // spróbuj...
-        try {
-            // Tworzenie obiektu typu PrintWriter, jako argument
-            // zostaje podana nazwa pliku
-            PrintWriter out = new PrintWriter(nazwaPliku);
-            // po kolei zapisywane są kolejne linijki tekstu
-            out.println("Raz");
-            out.println("Dwa");
-            out.println("Trzy");
-            // po zapisaniu danych plik należy zamknąć
-            out.close();
-            // jeśli się nie udało utworzyć pliku..
-        } catch (FileNotFoundException ex) {
-            System.out.println("Niestety, nie mogę utworzyć pliku!");
-        }
-    }
+        ArrayList<Reminder> reminders = readFile("dane.csv");
 
-    public static String odczytajPlik(String nazwaPliku) {
-        // Deklarowanie i tworzenie obiektu typu File
-        File plikDane = new File(nazwaPliku);
-        // Utworzenie obiektu typu String, który będzie
-        // przechowywał odczytany tekst
-        String odczyt = "";
-        try {
-            // Utworzenie obiektu typu String
-            Scanner skaner = new Scanner(plikDane);
-            // Odczytywanie kolejnych linii pliku dopóki są kolejne linie
-            while (skaner.hasNextLine()) {
-                // Do łańcucha znaków dodawana jest zawartość kolejnej linii
-                // oraz znak \n oznaczający następną linię
-                odczyt = odczyt + skaner.nextLine() + "\n";
+        ArrayList<Reminder> remindersToDisplay = new ArrayList<Reminder>();
+
+        Calendar now = Calendar.getInstance();
+
+        now.add(Calendar.DAY_OF_MONTH,5);
+
+        for(Reminder r : reminders)
+        {
+            if(r.getDate().before(now))
+            {
+                remindersToDisplay.add(r);
             }
-            // Jeśli nie udało się odczytać pliku
+
+        }
+
+        showMessageDialog(null, formatArray(remindersToDisplay),"Przypomnienie",2);
+    }
+
+
+
+    public static ArrayList<Reminder> readFile(String filePath)
+    {
+        ArrayList<Reminder> reminders = new ArrayList<Reminder>();
+
+        File file = new File(filePath);
+
+        try {
+            Scanner skaner = new Scanner(file);
+            while (skaner.hasNextLine()) {
+                Reminder r = new Reminder(skaner.nextLine());
+                reminders.add(r);
+            }
         } catch (FileNotFoundException e) {
             System.out.println("Brak Pliku do odczytania!");
         }
-        return odczyt;
+
+        return reminders;
     }
+
+    public static String formatArray(ArrayList<Reminder> reminders)
+    {
+        String message="";
+
+        for(Reminder r : reminders)
+        {
+            message = message + "\n" + r;
+
+        }
+
+        return message;
+    }
+
 }
 
