@@ -37,7 +37,10 @@ public class Main {
 
         }
 
-        showMessageDialog(null, formatArray(remindersToDisplay),"Przypomnienie",2);
+        if(!remindersToDisplay.isEmpty())
+        {
+            showMessageDialog(null, formatArray(remindersToDisplay),"Przypomnienie",2);
+        }
     }
 
 
