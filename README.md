@@ -1,6 +1,6 @@
 Program sprawdza czy w ciągu najbliższych pięciu dni następuje dzień wymieniony w pliku dane.csv i wyświetla date oraz opis tego dnia.
 
-plik dane.csv powinien zostać stworzony w folderze głównym projektu i zawierać datey oraz opisy w formatach:
+plik dane.csv powinien zostać stworzony w folderze głównym projektu i zawierać daty oraz opisy w formatach:
 
  - dd:MM:yyyy;opis  
 gdy chcemy aby komunikat wyświetlił się tylko raz
