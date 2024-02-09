@@ -2,13 +2,13 @@ Program sprawdza czy w ciągu najbliższych pięciu dni następuje dzień wymien
 
 plik dane.csv powinien zawierać date oraz opis w formatach:
 
- - dd:MM:yyyy;opis
+ - dd:MM:yyyy;opis  
 gdy chcemy aby komunikat wyświetlił się tylko raz
 
- - dd:MM;opis
+ - dd:MM;opis  
 gdy chcemy aby komunikat wyświetlał się co roku
 
- - dd;opis
+ - dd;opis  
 gdy chcemy aby komunikat wyświetlił się co miesiąc
 
 do pliku można wpisać wiele dat
