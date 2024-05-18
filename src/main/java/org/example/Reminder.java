@@ -36,6 +36,7 @@ public class Reminder {
                 Date d = sdf.parse(now.get(Calendar.YEAR)+"-"+mon+"-"+date[0]);
                 this.date.setTime(d);
 
+                now.add(Calendar.DAY_OF_MONTH,-1);
                 while (this.date.before(now)) {
                     this.date.add(Calendar.MONTH,1);
                 }
@@ -47,6 +48,8 @@ public class Reminder {
                 Date d = sdf.parse(now.get(Calendar.YEAR)+"-"+date[1]+"-"+date[0]);
                 this.date.setTime(d);
 
+
+                now.add(Calendar.DAY_OF_MONTH,-1);
                 while (this.date.before(now)) {
                     this.date.add(Calendar.YEAR,1);
                 }
