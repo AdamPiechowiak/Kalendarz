@@ -1,4 +1,4 @@
-dane.csv
+date.csv
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
